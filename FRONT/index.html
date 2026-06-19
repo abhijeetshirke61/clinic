@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareLine — Front Desk</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="15" stroke="#0E4F4A" stroke-width="2"/>
+        <path d="M4 17h5l2.5-6 4 11 2.5-7H28"
+              stroke="#DD6B3C"
+              stroke-width="2"
+              fill="none"/>
+      </svg>
+      CareLine
+    </div>
+
+    <span class="eyebrow">Front Desk</span>
+    <button id="logout-btn" class="btn btn-secondary" style="margin-left: auto; display: none;">Logout</button>
+  </div>
+</header>
+</form>
+</div>
+
+</div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="section" id="booking-section" style="display: none;">
+<div class="container">
+
+<div class="desk-grid">
+
+<!-- FORM -->
+<div class="card desk-form-card">
+
+<span class="eyebrow">New Booking</span>
+
+<h2>Book Appointment</h2>
+
+<p class="muted">
+Receptionist enters patient details and generates appointment.
+</p>
+
+<form id="booking-form">
+
+<!-- Patient ID (optional if backend generates) -->
+<div class="field">
+<label>Patient ID</label>
+<input type="text" id="patient_id" placeholder="PAT001">
+</div>
+
+<div class="field">
+<label>Patient Name</label>
+<input type="text" id="patient_name" placeholder="Enter Patient Name" required>
+</div>
+
+<!-- ✅ FIX: MOBILE NUMBER ADDED -->
+<div class="field">
+<label>Mobile Number</label>
+<input type="text" id="mobile_number" placeholder="Enter Mobile Number" required>
+</div>
+
+<div class="field-row">
+
+<div class="field">
+<label>Date</label>
+<input type="date" id="appointment_date" required>
+</div>
+
+<div class="field">
+<label>Time</label>
+<input type="time" id="appointment_time" required>
+</div>
+
+</div>
+
+<div class="field">
+<label>Notes</label>
+<textarea id="notes" rows="3" placeholder="Reason for visit"></textarea>
+</div>
+
+<button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;">
+Save & Generate ID
+</button>
+
+<p id="form-error" class="form-error"></p>
+
+</form>
+</div>
+
+<!-- TICKET -->
+<div class="desk-result">
+
+<div id="ticket-placeholder" class="ticket-placeholder">
+<span class="eyebrow">Confirmation</span>
+<p class="muted">Appointment details will appear here.</p>
+</div>
+
+<div id="ticket" class="ticket" hidden>
+
+<div class="ticket-top">
+<div class="ticket-label">Appointment Confirmed</div>
+<p class="ticket-doctor" id="ticket-name">-</p>
+</div>
+
+<div class="ticket-perforation"></div>
+
+<div class="ticket-body">
+
+<div class="ticket-field">
+<div class="ticket-field-label">Patient Name</div>
+<div class="ticket-field-value" id="ticket-name">-</div>
+</div>
+
+<!-- FIXED UNIQUE ID FIELD -->
+<div class="ticket-field">
+<div class="ticket-field-label">Unique ID</div>
+<div class="ticket-field-value" id="ticket-unique-id">-</div>
+</div>
+
+<div class="field">
+  <label>Mobile Number</label>
+  <input type="text" id="mobile_number" required>
+</div>
+
+<div class="ticket-field">
+<div class="ticket-field-label">Date</div>
+<div class="ticket-field-value" id="ticket-date">-</div>
+</div>
+
+<div class="ticket-field">
+<div class="ticket-field-label">Time</div>
+<div class="ticket-field-value" id="ticket-time">-</div>
+</div>
+
+<div class="ticket-field">
+<div class="ticket-field-label">Appointment ID</div>
+<div class="ticket-field-value" id="ticket-id">-</div>
+</div>
+
+<div class="ticket-status" id="ticket-status">Scheduled</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PATIENT STATUS CHECK -->
+<section class="section section-tint">
+<div class="container">
+
+<div class="card">
+
+<span class="eyebrow">Patient Portal</span>
+<h2>Check Appointment Status</h2>
+
+<div class="field-row">
+
+<div class="field">
+<label>Patient ID</label>
+<input type="text" id="search-patient-id" placeholder="PAT001">
+</div>
+
+<div class="field">
+<label>Appointment ID</label>
+<input type="text" id="search-appointment-id" placeholder="1">
+</div>
+
+</div>
+
+<button class="btn btn-primary" id="check-status-btn">
+Check Status
+</button>
+
+<div id="patient-result" style="margin-top:20px;"></div>
+
+</div>
+
+</div>
+</section>
+
+<!-- TABLE -->
+<section class="section" id="patients-section" style="display: none;">
+<div class="container">
+
+<div class="list-header">
+<div>
+<span class="eyebrow">Register</span>
+<h2>All Appointments</h2>
+</div>
+
+<button id="refresh-btn" class="btn btn-secondary">
+Refresh
+</button>
+</div>
+
+<div class="table-wrap">
+<table class="appt-table">
+<thead>
+<tr>
+<th>ID</th>
+<th>Patient</th>
+<th>Date</th>
+<th>Time</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+
+<tbody id="appt-table-body">
+<tr>
+<td colspan="6" style="text-align:center;">
+Loading...
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+
+</div>
+</section>
+
+<footer class="container" style="padding:40px 0;">
+<div class="brand">CareLine</div>
+<p class="muted">Receptionist & Patient Tracking System</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
