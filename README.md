@@ -1,6 +1,5 @@
 # CareLine Clinic - Quick Setup
 
-## 🚀 Deploy in 2 Minutes
 
 ### Step 1: Install Dependencies
 ```bash
@@ -31,12 +30,12 @@ python -m http.server 5500
 
 ## 📋 What's Working
 
-✅ User Login (JWT)
-✅ Book Appointments
-✅ View All Appointments
-✅ Auto-generate Patient IDs
-✅ Swagger API Docs
-✅ Supabase Database Integration
+ User Login (JWT)
+ Book Appointments
+View All Appointments
+Auto-generate Patient IDs
+Swagger API Docs
+ Supabase Database Integration
 
 ---
 
@@ -47,19 +46,17 @@ cd BAACK
 python test_deployment.py
 ```
 
-Should show: `✅ ALL TESTS PASSED`
+Should show:  ALL TESTS PASSED`
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 - **Full Guide:** See `DEPLOYMENT_GUIDE.md`
 - **API Docs:** http://127.0.0.1:8001/docs
 - **Code:** Check docstrings in `main.py` and `script-jwt.js`
 
 ---
-
-## 🎯 Demo Flow
 
 1. Go to http://127.0.0.1:5500
 2. Login: `admin` / `password`
@@ -70,4 +67,4 @@ Should show: `✅ ALL TESTS PASSED`
 
 ---
 
-**Status:** ✅ Production Ready
+**Status:**  Production Ready
